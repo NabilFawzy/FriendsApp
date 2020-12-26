@@ -25,7 +25,7 @@
       
           <a  class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.username | titlecase}}</a>
           <div class="dropdown-menu mt-3 " *dropdownMenu >
-            <a class="dropdown-item text-dark" >Edit Profile</a>
+            <a class="dropdown-item text-dark" routerLink='/member/edit'>Edit Profile</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item text-dark" (click)="logout()">Logout</a>
           </div>
