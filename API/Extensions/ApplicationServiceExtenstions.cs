@@ -12,7 +12,9 @@ namespace API.Extensions
     public static class ApplicationServiceExtenstions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services ,IConfiguration config){
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings")); 
             services.AddScoped<ITokenService,TokenService>();//jwt  
+             services.AddScoped<IPhotoService,PhotoService>();//photoservice cloudinary  
            services.AddScoped<IUserRepository,UserRepository>();//user repository 
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
              services.AddDbContext<DataContext>(

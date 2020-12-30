@@ -112,3 +112,5 @@ G:\project\FriendsApp\api\obj\Debug\net5.0\API.csproj.CopyComplete
 G:\project\FriendsApp\api\obj\Debug\net5.0\API.genruntimeconfig.cache
 G:\project\FriendsApp\api\bin\Debug\net5.0\AutoMapper.dll
 G:\project\FriendsApp\api\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+G:\project\FriendsApp\API\bin\Debug\net5.0\CloudinaryDotNet.dll
+G:\project\FriendsApp\API\bin\Debug\net5.0\Newtonsoft.Json.dll
