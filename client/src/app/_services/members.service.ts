@@ -48,7 +48,11 @@ export class MembersService {
     var response=this.memberCache.get(Object.values(userParams).join('-'));
      if(response) return of(response)
 
-    let params=this.getPaginationHeaders(userParams)
+    let params=this.getPaginationHeaders(userParams.pageNumber,userParams.pageSize)
+    params=params.append('minAge',userParams.minAge.toString());
+    params=params.append('maxAge',userParams.maxAge.toString());
+    params=params.append('gender',userParams.gender);
+    params=params.append('orderBy',userParams.orderBy);
     
     return this.getPaginationResult<Member[]>(this.baseUrl+ 'users',params)
     .pipe(map(response=>{
@@ -71,16 +75,13 @@ export class MembersService {
     );
   }
 
-  private getPaginationHeaders(userParams:UserParams){
+  private getPaginationHeaders(pageNumber:number,pageSize:number){
      //if(this.members.length>0) return of(this.members)  //of => to return observable
      let params=new HttpParams();//for serialize params and add to query string
        
-       params=params.append('pageNumber',userParams.pageNumber.toString());
-       params=params.append('pageSize',userParams.pageSize.toString());
-       params=params.append('minAge',userParams.minAge.toString());
-       params=params.append('maxAge',userParams.maxAge.toString());
-       params=params.append('gender',userParams.gender);
-       params=params.append('orderBy',userParams.orderBy);
+       params=params.append('pageNumber',pageNumber.toString());
+       params=params.append('pageSize',pageSize.toString());
+      
        
 
        return params;
@@ -110,6 +111,16 @@ export class MembersService {
     );
   }
 
+  addLike(username:string){
+    return this.http.post(this.baseUrl+'likes/'+username,{});
+  }
+  getLikes(predicate:string,pageNumber:any,pageSize:any){
+    let params=this.getPaginationHeaders(pageNumber,pageSize);
+    params=params.append('predicate',predicate);
+    
+    return this.getPaginationResult<Partial<Member[]>>(this.baseUrl+'likes',params);
+
+  }
  
 
   setMainPhoto(photoId:Number){
