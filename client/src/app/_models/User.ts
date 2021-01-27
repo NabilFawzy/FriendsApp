@@ -6,4 +6,5 @@ export interface User
      photoUrl:String;
      knownAs:string;
      gender:string;
+     roles:string[];
     }
