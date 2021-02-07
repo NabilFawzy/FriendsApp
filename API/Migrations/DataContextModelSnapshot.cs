@@ -4,16 +4,14 @@ using API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace API.Data.Migrations
+namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210124052730_IdentityMigr")]
-    partial class IdentityMigr
+    partial class DataContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,6 +158,34 @@ namespace API.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("API.Entities.Connection", b =>
+                {
+                    b.Property<string>("ConnectionId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("GroupName")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ConnectionId");
+
+                    b.HasIndex("GroupName");
+
+                    b.ToTable("Connections");
+                });
+
+            modelBuilder.Entity("API.Entities.Group", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Name");
+
+                    b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("API.Entities.Message", b =>
@@ -351,6 +377,13 @@ namespace API.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("API.Entities.Connection", b =>
+                {
+                    b.HasOne("API.Entities.Group", null)
+                        .WithMany("Connections")
+                        .HasForeignKey("GroupName");
+                });
+
             modelBuilder.Entity("API.Entities.Message", b =>
                 {
                     b.HasOne("API.Entities.AppUser", "Recipent")
@@ -454,6 +487,11 @@ namespace API.Data.Migrations
                     b.Navigation("Photos");
 
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("API.Entities.Group", b =>
+                {
+                    b.Navigation("Connections");
                 });
 #pragma warning restore 612, 618
         }

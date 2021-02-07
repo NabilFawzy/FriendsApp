@@ -60,14 +60,15 @@ import { RolesModelsComponent } from './modals/roles-models/roles-models.compone
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
     NgxSpinnerModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    AppRoutingModule,
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:ErrorInterceptor,multi:true},
