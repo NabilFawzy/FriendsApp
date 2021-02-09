@@ -31,6 +31,7 @@ import { HasRoleDirective } from './_directive/has-role.directive';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import { RolesModelsComponent } from './modals/roles-models/roles-models.component';
+import { ConfirmDialogComponent } from './modals/confirm-dialog/confirm-dialog.component';
 
 
 
@@ -56,7 +57,8 @@ import { RolesModelsComponent } from './modals/roles-models/roles-models.compone
     HasRoleDirective,
     UserManagementComponent,
     PhotoManagementComponent,
-    RolesModelsComponent
+    RolesModelsComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
