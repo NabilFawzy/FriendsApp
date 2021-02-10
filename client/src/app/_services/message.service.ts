@@ -34,7 +34,7 @@ export class MessageService {
       
     this.hubConnection.on('ReceiveMessageThread',messages=>{
       this.messageThreadSource.next(messages)
-      console.log(messages)
+      
     })
 
     this.hubConnection.on('NewMessage',message=>{
